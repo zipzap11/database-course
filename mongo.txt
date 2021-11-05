@@ -1,0 +1,136 @@
+show dbs
+use alta
+// 1. CREATE
+// Insert 5 operators pada table operators.
+db.operators.insert([{name: 'Telkomsel'}, {name: 'Indosat'}, {name: 'XL'}, {name: 'Smartfren'}, {name: 'By.U'}])
+// Insert 3 product type
+db.product_type.insert([{name: "Pulsa"},{name: "Kuota"}, {nama: "Telepon"}])
+// Insert 2 product dengan product type id = 1, dan operators id = 3.
+// Insert 3 product dengan product type id = 2, dan operators id = 1.
+// Insert 3 product dengan product type id = 3, dan operators id = 4.
+db.product.insert([
+    {name: "Pulsa 10000", stock: 10, price: "12000", operator: 3, product_type: 1},
+    {name: "Pulsa 1000", stock: 10, price: "22000", operator: 3, product_type: 1},
+    {name: "Kuota 10 GB", stock: 10, price: "50000", operator: 1, product_type: 2},
+    {name: "Kuota 5 GB", stock: 10, price: "30000", operator: 1, product_type: 2},
+    {name: "Kuota unlimited", stock: 10, price: "20000", operator: 1, product_type: 2},
+    {name: "Telepon 300 menit", stock: 10, price: "13000", operator: 4, product_type: 3},
+    {name: "Telepon 10 jam", stock: 10, price: "25000", operator: 4, product_type: 3},
+    {name: "Telepon 2 jam", stock: 10, price: "15000", operator: 4, product_type: 3}
+])
+// Insert product description pada setiap product.
+db.product_description.insert([
+    { id: 1, desc:  'Pulsa sebesar 10.000 ribu dengan harga Rp. 12.000' },
+    { id: 2, desc: 'Pulsa sebesar 20.000 dengan harga Rp. 12.000' },
+    { id: 3, desc: 'Kuota sebanyak 10 gigabyte dengan harga Rp. 50.000' },
+    { id: 4, desc: 'Kuota sebanyak 5 gigabyte dengan harga Rp. 30.000' },
+    { id: 5, desc: 'Kuota unlimited dengan harga Rp. 20.000' },
+    { id: 6, desc: 'Akses telepon selama 300 menit dengan harga Rp. 13.000' },
+    { id: 7, desc: 'Akses telepon selama 10 jam dengan harga Rp. 25.000' },
+    { id: 8, desc: 'Akses telepon selama 2 jam dengan harga Rp. 15.000' }
+])
+// Insert 3 payment methods.
+db.payment_method.insert([
+    { id: 1, method: "BCA", status: 1 },
+    { id: 2, method: "OVO", status: 1 },
+    { id: 3, method: "Gopay", status: 1 },
+])
+// Insert 5 user pada tabel user.
+db.user.insert([
+    { id: 1, name: "Toni", address: "Bogor", gender: "M", dob: "1999-10-23" },
+    { id: 2, name: "Dina", address: "Depok", gender: "F", dob: "1999-10-24" },
+    { id: 3, name: "Angga", address: "Jakarta", gender: "M", dob: "1999-10-25" },
+    { id: 4, name: "Lilis", address: "Bandung", gender: "F", dob: "1999-10-26" },
+    { id: 5, name: "Dani", address: "Bekasi", gender: "M", dob: "1999-10-27" }
+])
+// Insert 3 transaksi di masing-masing user.
+db.transaction.insert([
+    { id: 1, total: 84000, user_id: 1, payment_method: 1 },
+    { id: 2, total: 102000, user_id: 1, payment_method: 2 },
+    { id: 3, total: 10000, user_id: 1, payment_method: 1 },
+    { id: 4, total: 63000, user_id: 2, payment_method: 3 },
+    { id: 5, total: 58000, user_id: 2, payment_method: 3 },
+    { id: 6, total: 53000, user_id: 2, payment_method: 1 },
+    { id: 7, total: 52000, user_id: 3, payment_method: 1 },
+    { id: 8, total: 49000, user_id: 3, payment_method: 1 },
+    { id: 9, total: 84000, user_id: 3, payment_method: 1 },
+    { id: 10, total: 102000, user_id: 4, payment_method: 2 },
+    { id: 11, total: 100000, user_id: 4, payment_method: 1 },
+    { id: 12, total: 63000, user_id: 4, payment_method: 1 },
+    { id: 13, total: 58000, user_id: 5, payment_method: 2 },
+    { id: 14, total: 53000, user_id: 5, payment_method: 3 },
+    { id: 15, total: 52000, user_id: 5, payment_method: 3 }
+])
+// Insert 3 product di masing-masing transaksi.
+db.transaction_detail.insert([
+{ id: 1, transaction_id: 1, prodcut_id: 1, qty: 1, price: 12000 },
+{ id: 2, transaction_id: 1, prodcut_id: 2, qty: 1, price: 22000 }, 
+{ id: 3, transaction_id: 1, prodcut_id: 3, qty: 1, price: 50000 }, 
+{ id: 4, transaction_id: 2, prodcut_id: 2, qty: 1, price: 22000 }, 
+{ id: 5, transaction_id: 2, prodcut_id: 3, qty: 1, price: 50000 }, 
+{ id: 6, transaction_id: 2, prodcut_id: 4, qty: 1, price: 30000 }, 
+{ id: 7, transaction_id: 3, prodcut_id: 3, qty: 1, price: 50000 }, 
+{ id: 8, transaction_id: 3, prodcut_id: 4, qty: 1, price: 30000 }, 
+{ id: 9, transaction_id: 3, prodcut_id: 5, qty: 1, price: 20000 }, 
+{ id: 10, transaction_id: 4, prodcut_id: 4, qty: 1, price: 30000 },
+{ id: 11, transaction_id: 4, prodcut_id: 5, qty: 1, price: 20000 },
+{ id: 12, transaction_id: 4, prodcut_id: 6, qty: 1, price: 13000 },
+{ id: 13, transaction_id: 5, prodcut_id: 5, qty: 1, price: 20000 },
+{ id: 14, transaction_id: 5, prodcut_id: 6, qty: 1, price: 13000 },
+{ id: 15, transaction_id: 5, prodcut_id: 7, qty: 1, price: 25000 },
+{ id: 16, transaction_id: 6, prodcut_id: 6, qty: 1, price: 13000 },
+{ id: 17, transaction_id: 6, prodcut_id: 7, qty: 1, price: 25000 },
+{ id: 18, transaction_id: 6, prodcut_id: 8, qty: 1, price: 15000 },
+{ id: 19, transaction_id: 7, prodcut_id: 7, qty: 1, price: 25000 },
+{ id: 20, transaction_id: 7, prodcut_id: 8, qty: 1, price: 15000 },
+{ id: 21, transaction_id: 7, prodcut_id: 1, qty: 1, price: 12000 },
+{ id: 22, transaction_id: 8, prodcut_id: 8, qty: 1, price: 15000 },
+{ id: 23, transaction_id: 8, prodcut_id: 1, qty: 1, price: 12000 },
+{ id: 24, transaction_id: 8, prodcut_id: 2, qty: 1, price: 22000 },
+{ id: 25, transaction_id: 9, prodcut_id: 1, qty: 1, price: 12000 },
+{ id: 26, transaction_id: 9, prodcut_id: 2, qty: 1, price: 22000 },
+{ id: 27, transaction_id: 9, prodcut_id: 3, qty: 1, price: 50000 },
+{ id: 28, transaction_id: 10, prodcut_id: 2, qty: 1, price: 22000 },
+{ id: 29, transaction_id: 10, prodcut_id: 3, qty: 1, price: 50000 },
+{ id: 30, transaction_id: 10, prodcut_id: 4, qty: 1, price: 30000 },
+{ id: 31, transaction_id: 11, prodcut_id: 3, qty: 1, price: 50000 },
+{ id: 32, transaction_id: 11, prodcut_id: 4, qty: 1, price: 30000 },
+{ id: 33, transaction_id: 11, prodcut_id: 5, qty: 1, price: 20000 },
+{ id: 34, transaction_id: 12, prodcut_id: 4, qty: 1, price: 30000 },
+{ id: 35, transaction_id: 12, prodcut_id: 5, qty: 1, price: 20000 },
+{ id: 36, transaction_id: 12, prodcut_id: 6, qty: 1, price: 13000 },
+{ id: 37, transaction_id: 13, prodcut_id: 5, qty: 1, price: 20000 },
+{ id: 38, transaction_id: 13, prodcut_id: 6, qty: 1, price: 13000 },
+{ id: 39, transaction_id: 13, prodcut_id: 7, qty: 1, price: 25000 },
+{ id: 40, transaction_id: 14, prodcut_id: 6, qty: 1, price: 13000 },
+{ id: 41, transaction_id: 14, prodcut_id: 7, qty: 1, price: 25000 },
+{ id: 42, transaction_id: 14, prodcut_id: 8, qty: 1, price: 15000 },
+{ id: 43, transaction_id: 15, prodcut_id: 7, qty: 1, price: 25000 },
+{ id: 44, transaction_id: 15, prodcut_id: 8, qty: 1, price: 15000 },
+{ id: 45, transaction_id: 15, prodcut_id: 1, qty: 1, price: 12000 }
+])
+
+// 2. READ
+// Tampilkan nama user / pelanggan dengan gender Laki-laki / M.
+db.user.find({ gender: "M" }, { name: 1 })
+// Tampilkan product dengan id = 3.
+db.product.find({ id: 1 })
+// Hitung jumlah user / pelanggan dengan status gender Perempuan.
+db.user.count({ gender: "F" })
+// Tampilkan data pelanggan dengan urutan sesuai nama abjad.
+db.user.find().sort({ name: 1 })
+// Tampilkan 5 data product.
+db.product.find().limit(5)
+
+// 3. UPDATE
+// Ubah data product id 1 dengan nama ‘product dummy’.
+db.product.updateOne({ id: 1 }, { $set : { name: "product dummy" } })
+// Ubah qty = 3 pada transaction detail dengan product id 1.
+db.transaction_detail.updateMany({ prodcut_id: 1 }, { $set: { qty: 3 } })
+
+
+// 4. DELETE
+// Delete data pada tabel product dengan id 1.
+db.product.deleteOne({ id: 1 })
+// Delete pada pada tabel product dengan product type id 1.
+db.product.deleteMany({ product_type: 1 })
