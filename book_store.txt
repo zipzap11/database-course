@@ -94,7 +94,7 @@ db.books.aggregate([
     },
     {
         $group: {
-            _id: 2,
+            _id: "$authorID",
             totalPages: { $sum: "$stats.page" }
         }
     }
@@ -220,7 +220,7 @@ db.books.aggregate([
             title: 1,
             price: 1,
             author: {
-                $concat: ["$author.firstName", " ", "author.lastName"]
+                $concat: ["$author.firstName", " ", "$author.lastName"]
             },
             publisher: "$publisher.publisherName"
         }
